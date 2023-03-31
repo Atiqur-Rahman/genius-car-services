@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "ENGINE DIAGNOSTIC",
+        "price": "300",
+        "description": "We use state of the art scan tools and equipment to perform our engine diagnostic services. In some cases, we will even use factory scan tool software to assist us. Our technicians constantly go through automotive training and are more than capable of following factory flow charts.",
+        "img": "https://i.ibb.co/GW0DLQp/engine-diagnostic-1.png"
+    },
+    {
+        "id": 2,
+        "name": "WHEEL ALIGNMENT",
+        "price": "100",
+        "description": "Regular wheel alignment ensures your tires meet the road at the right angle and your wheels are pointing straight. Proper wheel alignment maximizes fuel economy, tire life, and the overall performance of your vehicle.",
+        "img": "https://i.ibb.co/p0Z3df1/wheel-alignment-1.png"
+    },
+    {
+        "id": 3,
+        "name": "OIL CHANGING",
+        "price": "150",
+        "description": "The type of motor oil you use, the type of vehicle you drive, the way you drive and more determine how often you should change your oil. Generally, 3,000 miles and 5,000 miles have been commonly recommended oil change intervals ",
+        "img": "https://i.ibb.co/Rpdb5mN/oil-changing-1.png"
+    },
+    {
+        "id": 4,
+        "name": "BRAKE REPAIRING",
+        "price": "300",
+        "description": "Brakes and brake repair service for the entire braking system and brake problems, such as brake pads, brake fluid, and rotors, are important in helping ensure the safety of you and your passengers in your car, truck or other automobile with brake issues.",
+        "img": "https://i.ibb.co/WDjL1Fx/brake-repairing-1.png"
+    },
+    {
+        "id": 5,
+        "name": "WASH AND GLASSING",
+        "price": "100",
+        "description": "On busy days at popular carwashes attendants are working numerous hours on hundreds of cars, and after a while the work can become routine. Having managers present in final cleaning areas of your carwash is one way to ensure optimal results and provide quality assurance.",
+        "img": "https://i.ibb.co/BGttPwC/wash-and-glassing-1.png"
+    },
+    {
+        "id": 6,
+        "name": "COMPLETE ANALYSIS",
+        "price": "300",
+        "description": "Especially in recent years, with the rapid advancement of technology, increasingly niche, and higher customer expectations, supply chain improvements, and global regulations, automakers have started to redefine how they use data intelligence and technology to improve the effectiveness and efficiency of how they operate.",
+        "img": "https://i.ibb.co/n0yD9wj/complete-analysis-1.png"
+    }
+]
