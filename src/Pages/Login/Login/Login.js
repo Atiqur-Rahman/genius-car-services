@@ -15,6 +15,8 @@ const Login = () => {
 
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
 
+    let errorElement;
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const email = emailRef.current.value;
@@ -30,6 +32,14 @@ const Login = () => {
     const navigateRegister = (event) => {
         navigate('/register');
     };
+
+    if (error) {
+        errorElement = (
+            <div>
+                <p className="text-danger">Error: {error?.message}</p>
+            </div>
+        );
+    }
 
     return (
         <div className="container mx-auto w-50 mt-3">
@@ -49,6 +59,7 @@ const Login = () => {
                     Submit
                 </Button>
             </Form>
+            {errorElement}
             <p>
                 New to Genius Car?{' '}
                 <Link to="/register" className="text-danger text-decoration-none pe-auto" onClick={navigateRegister}>
