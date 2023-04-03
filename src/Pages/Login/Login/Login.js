@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
@@ -15,13 +15,15 @@ const Login = () => {
 
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
 
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+
     let errorElement;
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-
+        console.log(email, password);
         signInWithEmailAndPassword(email, password);
     };
 
@@ -29,17 +31,20 @@ const Login = () => {
         navigate(from, { replace: true });
     }
 
+    if (error) {
+        errorElement = <p className="text-danger">Error: {error?.message}</p>;
+    }
+
     const navigateRegister = (event) => {
         navigate('/register');
     };
 
-    if (error) {
-        errorElement = (
-            <div>
-                <p className="text-danger">Error: {error?.message}</p>
-            </div>
-        );
-    }
+    const resetPassword = async () => {
+        const email = emailRef.current.value;
+        console.log(email);
+        await sendPasswordResetEmail(email);
+        alert('Sent email');
+    };
 
     return (
         <div className="container mx-auto w-50 mt-3">
@@ -52,18 +57,21 @@ const Login = () => {
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Control ref={passwordRef} type="password" placeholder="Password" />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
+                <Button variant="primary w-50 mx-auto d-block" type="submit">
+                    Login
                 </Button>
             </Form>
             {errorElement}
             <p>
                 New to Genius Car?{' '}
-                <Link to="/register" className="text-danger text-decoration-none pe-auto" onClick={navigateRegister}>
+                <Link to="/register" className="text-primary text-decoration-none pe-auto" onClick={navigateRegister}>
                     Please Register
+                </Link>
+            </p>
+            <p>
+                Forget Password?{' '}
+                <Link to="/register" className="text-primary text-decoration-none pe-auto" onClick={resetPassword}>
+                    Reset Password
                 </Link>
             </p>
             <SocialLogin></SocialLogin>
