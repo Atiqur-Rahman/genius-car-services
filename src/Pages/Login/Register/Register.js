@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import './Register.css';
@@ -6,8 +6,9 @@ import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Register = () => {
-    const navigate = useNavigate();
+    const [agree, setAgree] = useState(false);
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const navigate = useNavigate();
 
     const navigateLogin = () => {
         navigate('/login');
@@ -22,8 +23,11 @@ const Register = () => {
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
+        // const agree = event.target.terms.checked;
 
-        createUserWithEmailAndPassword(email, password);
+        if (agree) {
+            createUserWithEmailAndPassword(email, password);
+        }
     };
     return (
         <div className="register-form">
@@ -34,11 +38,14 @@ const Register = () => {
                 <input type="email" name="email" id="" placeholder="Your Email" required />
 
                 <input type="password" name="password" id="" placeholder="Password" required />
-                <input type="checkbox" name="terms" id="terms" />
-                <label className="ms-1" htmlFor="terms">
+                <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
+                {/* <label className={agree ? 'ps-2' : 'ps-2 text-danger'} htmlFor="terms">
+                    Accept Genius Car Terms and Condition
+                </label> */}
+                <label className={`ps-2 ${agree ? '' : 'text-danger'}`} htmlFor="terms">
                     Accept Genius Car Terms and Condition
                 </label>
-                <input className="w-50 mx-auto btn btn-primary mt-2" type="submit" value="Register" />
+                <input disabled={!agree} className="w-50 mx-auto btn btn-primary mt-2" type="submit" value="Register" />
             </form>
             <p>
                 Already have an account?{' '}
