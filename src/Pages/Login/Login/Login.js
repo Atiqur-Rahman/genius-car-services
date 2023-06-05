@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../../firebase.init';
 import Loading from '../../../Shared/Loading/Loading';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import PageTitle from '../../../Shared/PageTitle/PageTitle';
 
 const Login = () => {
     const emailRef = useRef('');
@@ -51,7 +52,7 @@ const Login = () => {
 
         if (email) {
             await sendPasswordResetEmail(email);
-            toast('Sent email');
+            toast('Email sent');
         } else {
             toast('Please enter your email address');
         }
@@ -59,6 +60,7 @@ const Login = () => {
 
     return (
         <div className="container mx-auto w-50 mt-3">
+            <PageTitle title="Login"></PageTitle>
             <h2 className="text-primary text-center">Please Login</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
