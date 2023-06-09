@@ -7,7 +7,7 @@ const AddService = () => {
     const onSubmit = (data) => {
         // alert(JSON.stringify(data));
         console.log(data);
-        fetch('http://localhost:5000/service', {
+        fetch('https://genius-car-services-server-tau.vercel.app/service', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',

@@ -10,7 +10,7 @@ const RequireAuth = ({ children }) => {
     const [sendEmailVerification, sending, error] = useSendEmailVerification(auth);
     const location = useLocation();
 
-    console.log('inside require auth', user);
+    // console.log('inside require auth', user);
 
     if (loading) {
         return <Loading></Loading>;
