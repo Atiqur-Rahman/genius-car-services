@@ -30,6 +30,13 @@ const Order = () => {
     return (
         <div>
             <h2>Your Order: {orders.length}</h2>
+            {orders.map((order) => (
+                <div key={order._id}>
+                    <p>
+                        {order.email} : {order.service}
+                    </p>
+                </div>
+            ))}
         </div>
     );
 };

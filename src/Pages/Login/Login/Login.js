@@ -8,7 +8,7 @@ import auth from '../../../firebase.init';
 import Loading from '../../../Shared/Loading/Loading';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import PageTitle from '../../../Shared/PageTitle/PageTitle';
-import axios from 'axios';
+import useToken from '../../../hooks/useToken';
 
 const Login = () => {
     const emailRef = useRef('');
@@ -21,6 +21,7 @@ const Login = () => {
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
 
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+    const [token] = useToken(user);
 
     let errorElement;
 
@@ -28,16 +29,13 @@ const Login = () => {
         event.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-        console.log(email, password);
+        // console.log(email, password);
         await signInWithEmailAndPassword(email, password);
-
-        const { data } = await axios.post('https://genius-car-services-server-tau.vercel.app/login', { email });
-        localStorage.setItem('accessToken', data.accessToken);
-        navigate(from, { replace: true });
     };
 
-    if (user) {
-        // navigate(from, { replace: true });
+    if (token) {
+        // console.log(user);
+        navigate(from, { replace: true });
     }
 
     if (loading || sending) {
